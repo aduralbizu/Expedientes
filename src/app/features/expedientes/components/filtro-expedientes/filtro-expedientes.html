@@ -1,0 +1,43 @@
+<div class="filtro-expedientes-container">
+  <div class="filtros-row">
+    <div class="campo buscar">
+      <label for="buscar">Buscar</label>
+      <input id="buscar" type="text" placeholder="Buscar expediente..." />
+    </div>
+
+    <div class="campo">
+      <label for="estado">Estado</label>
+      <select id="estado">
+        <option value="">Todos</option>
+        <option value="abierto">Abierto</option>
+        <option value="en-tramite">En trámite</option>
+        <option value="cerrado">Cerrado</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="prioridad">Prioridad</label>
+      <select id="prioridad">
+        <option value="">Todas</option>
+        <option value="alta">Alta</option>
+        <option value="media">Media</option>
+        <option value="baja">Baja</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="fechaDesde">Fecha desde</label>
+      <input id="fechaDesde" type="date" />
+    </div>
+
+    <div class="campo">
+      <label for="fechaHasta">Fecha hasta</label>
+      <input id="fechaHasta" type="date" />
+    </div>
+  </div>
+
+  <div class="acciones-row">
+    <button type="button" class="btn btn-primario">Buscar</button>
+    <button type="button" class="btn btn-secundario">Limpiar filtros</button>
+  </div>
+</div>
