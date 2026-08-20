@@ -1,10 +1,12 @@
 <div class="pagina-expedientes">
+
   <h2>Listado de expedientes</h2>
+
   <div class="seccion seccion-filtro">
-    <app-filtro-expedientes></app-filtro-expedientes>
+    <app-filtro-expedientes (filtroExpediente)="filtraExpedientes($event)"></app-filtro-expedientes>
   </div>
 
   <div class="seccion seccion-lista">
-    <app-lista-expedientes [expedientes]="expedientes"></app-lista-expedientes>
+    <app-lista-expedientes [expedientes]="listaexpedientes()"></app-lista-expedientes>
   </div>
 </div>

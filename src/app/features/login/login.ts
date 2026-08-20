@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -6,8 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
+
 export class Login {
+  router = inject(Router);
+
   login(){
-    console.log("intento")
+    //mockeo autenticación de usuario
+    this.router.navigate(['/expedientes']);
   }
 }

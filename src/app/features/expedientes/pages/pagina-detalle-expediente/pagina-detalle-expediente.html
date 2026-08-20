@@ -1,0 +1,58 @@
+<main class="pagina-detalle-expediente">
+  <header class="detalle-header">
+    <div>
+      <span class="etiqueta">Detalle del expediente</span>
+      <h1>{{ expediente().titulo }}</h1>
+      <p class="numero">{{ expediente().numero }}</p>
+    </div>
+
+    <span class="estado" [class.estado-abierto]="expediente().estado === 'Abierto'"
+      [class.estado-tramite]="expediente().estado === 'En trámite'"
+      [class.estado-cerrado]="expediente().estado === 'Cerrado'">
+      {{ expediente().estado }}
+    </span>
+  </header>
+
+  <section class="detalle-grid">
+    <article class="bloque">
+      <h2>Información general</h2>
+      <div class="datos-grid">
+        <div class="dato">
+          <span>Número de expediente</span>
+          <strong>{{ expediente().numero }}</strong>
+        </div>
+        <div class="dato">
+          <span>Prioridad</span>
+          <strong>{{ expediente().prioridad }}</strong>
+        </div>
+        <div class="dato">
+          <span>Fecha de alta</span>
+          <strong>{{ expediente().fechaAlta | date: 'dd/MM/yyyy' }}</strong>
+        </div>
+        <div class="dato">
+          <span>Fecha de vencimiento</span>
+          <strong>{{ expediente().fechaVencimiento | date: 'dd/MM/yyyy' }}</strong>
+        </div>
+      </div>
+    </article>
+
+    <article class="bloque">
+      <h2>Responsables</h2>
+      <div class="datos-grid">
+        <div class="dato">
+          <span>Solicitante</span>
+          <strong>{{ expediente().Solicitante }}</strong>
+        </div>
+        <div class="dato">
+          <span>Unidad responsable</span>
+          <strong>{{ expediente().Unidad }}</strong>
+        </div>
+      </div>
+    </article>
+
+    <article class="bloque bloque-descripcion">
+      <h2>Descripción</h2>
+      <p>{{ expediente().descripcion }}</p>
+    </article>
+  </section>
+</main>

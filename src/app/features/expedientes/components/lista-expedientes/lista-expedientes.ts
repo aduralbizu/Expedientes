@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Expediente } from '../../models/expediente';
 
@@ -10,4 +10,9 @@ import { Expediente } from '../../models/expediente';
 })
 export class ListaExpedientes {
   expedientes = input<Expediente[]>([]);
+  productoSeleccionado = output<Expediente>();
+
+  onExpedienteClick(expediente: Expediente) {
+    this.productoSeleccionado.emit(expediente);  
+  }
 }

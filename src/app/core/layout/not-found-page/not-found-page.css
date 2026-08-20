@@ -1,0 +1,18 @@
+.not-found-page {
+	min-height: 55vh;
+	display: grid;
+	place-items: center;
+	padding: 3rem 1.5rem;
+	background-color: #fff;
+}
+
+.not-found-page p {
+	margin: 0;
+	color: #4d05d3;
+	font-family: Arial, sans-serif;
+	font-size: clamp(5rem, 18vw, 10rem);
+	font-weight: 800;
+	line-height: 1;
+	letter-spacing: 0.08em;
+	text-shadow: 0 8px 18px rgba(77, 5, 211, 0.16);
+}

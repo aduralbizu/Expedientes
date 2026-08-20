@@ -1,0 +1,100 @@
+.pagina-detalle-expediente {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #1f2937;
+  font-family: Arial, sans-serif;
+}
+
+.detalle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: #4d05d3;
+  color: #fff;
+}
+
+.etiqueta {
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+h1 {
+  margin: 0.5rem 0 0.35rem;
+  font-size: 1.8rem;
+}
+
+.numero {
+  margin: 0;
+  opacity: 0.8;
+}
+
+.estado {
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #1f2937;
+  font-size: 0.85rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.estado-abierto { color: #15803d; }
+.estado-tramite { color: #b45309; }
+.estado-cerrado { color: #6b7280; }
+
+.detalle-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.bloque {
+  padding: 1.25rem;
+  border: 1px solid #e3e6ea;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.bloque h2 {
+  margin: 0 0 1rem;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.datos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.dato span {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.dato strong { color: #111827; }
+
+.bloque-descripcion p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .detalle-header { flex-direction: column; }
+  .datos-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 1.45rem; }
+}

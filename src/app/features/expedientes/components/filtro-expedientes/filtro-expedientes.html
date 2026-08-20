@@ -2,7 +2,11 @@
   <div class="filtros-row">
     <div class="campo buscar">
       <label for="buscar">Buscar</label>
-      <input id="buscar" type="text" placeholder="Buscar expediente..." />
+      <input 
+        id="buscar"
+        type="text" 
+        placeholder="Buscar expediente..." 
+        [(ngModel)]="filtroNumeroExpediente" />
     </div>
 
     <div class="campo">
@@ -37,7 +41,7 @@
   </div>
 
   <div class="acciones-row">
-    <button type="button" class="btn btn-primario">Buscar</button>
-    <button type="button" class="btn btn-secundario">Limpiar filtros</button>
+    <button class="btn btn-primario" (click)="buscar()">Buscar</button>
+    <button class="btn btn-secundario" (click)="limpiar()">Limpiar filtros</button>
   </div>
 </div>
