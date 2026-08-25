@@ -4,6 +4,7 @@ import { FiltroExpedientes } from "../../components/filtro-expedientes/filtro-ex
 import { ListaExpedientes } from "../../components/lista-expedientes/lista-expedientes";
 import { ExpedientesService } from '../../services/expedientes-service/expedientes-service';
 import { Expediente } from '../../models/expediente';
+import { FiltrosExpedientes } from '../../models/filtros-expediente';
 
 @Component({
   selector: 'app-pagina-expedientes',
@@ -17,6 +18,13 @@ export class PaginaExpedientes implements OnInit {
 
   nombre = input<string>();
   expedientes: Expediente[] = [];
+  filtros: FiltrosExpedientes = {
+    numero: '',
+    estado: '',
+    prioridad: '',
+    fechaDesde: '',
+    fechaHasta: ''
+  };
 
   ngOnInit(): void {
     this.expedientesService.obtenerExpedientes().subscribe(expedientes => {
@@ -27,19 +35,29 @@ export class PaginaExpedientes implements OnInit {
   
 
   getlistaexpedientes(): Expediente[] {
-    if (!this.nombre()) {
-      return this.expedientes;
-    }
+    const numero = this.filtros.numero || this.nombre() || '';
+    const fechaDesde = this.filtros.fechaDesde
+      ? new Date(`${this.filtros.fechaDesde}T00:00:00`)
+      : null;
+    const fechaHasta = this.filtros.fechaHasta
+      ? new Date(`${this.filtros.fechaHasta}T23:59:59`)
+      : null;
 
     return this.expedientes.filter(expediente =>
-      expediente.numero.toLowerCase().includes(this.nombre()!.toLowerCase())
+      expediente.numero.toLowerCase().includes(numero.toLowerCase()) &&
+      (!this.filtros.estado || expediente.estado === this.filtros.estado) &&
+      (!this.filtros.prioridad || expediente.prioridad === this.filtros.prioridad) &&
+      (!fechaDesde || expediente.fechaAlta >= fechaDesde) &&
+      (!fechaHasta || expediente.fechaAlta <= fechaHasta)
     );
   }
 
-  filtraExpedientes(filtro: string | null) {
+  filtraExpedientes(filtros: FiltrosExpedientes) {
+    this.filtros = filtros;
+
     this.router.navigate(['/expedientes'], {
       queryParams: {
-        nombre : filtro || null
+        nombre: filtros.numero || null
       }
     });
   }

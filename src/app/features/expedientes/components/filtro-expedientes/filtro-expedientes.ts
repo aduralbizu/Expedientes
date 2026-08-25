@@ -1,5 +1,6 @@
 import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FiltrosExpedientes } from '../../models/filtros-expediente';
 
 @Component({
   selector: 'app-filtro-expedientes',
@@ -8,17 +9,28 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './filtro-expedientes.css',
 })
 export class FiltroExpedientes {
-  
-  filtroNumeroExpediente: string = '';
+  filtrosExpediente = output<FiltrosExpedientes>();
 
-  filtroExpediente = output<string | null>();
+  filtros: FiltrosExpedientes = {
+    numero: '',
+    estado: '',
+    prioridad: '',
+    fechaDesde: '',
+    fechaHasta: ''
+  };
 
   limpiar(){
-    this.filtroNumeroExpediente = '';
-    this.filtroExpediente.emit(null);
+    this.filtros = {
+      numero: '',
+      estado: '',
+      prioridad: '',
+      fechaDesde: '',
+      fechaHasta: ''
+    };
+    this.filtrosExpediente.emit(this.filtros);
   }
 
   buscar(){
-    this.filtroExpediente.emit(this.filtroNumeroExpediente);
+    this.filtrosExpediente.emit(this.filtros);
   }
 }

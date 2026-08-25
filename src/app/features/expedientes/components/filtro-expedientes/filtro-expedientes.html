@@ -6,22 +6,22 @@
         id="buscar"
         type="text" 
         placeholder="Buscar expediente..." 
-        [(ngModel)]="filtroNumeroExpediente" />
+        [(ngModel)]="filtros.numero" />
     </div>
 
     <div class="campo">
       <label for="estado">Estado</label>
-      <select id="estado">
+      <select id="estado" [(ngModel)]="filtros.estado">
         <option value="">Todos</option>
         <option value="abierto">Abierto</option>
-        <option value="en-tramite">En trámite</option>
+        <option value="en_proceso">En trámite</option>
         <option value="cerrado">Cerrado</option>
       </select>
     </div>
 
     <div class="campo">
       <label for="prioridad">Prioridad</label>
-      <select id="prioridad">
+      <select id="prioridad" [(ngModel)]="filtros.prioridad">
         <option value="">Todas</option>
         <option value="alta">Alta</option>
         <option value="media">Media</option>
@@ -31,12 +31,12 @@
 
     <div class="campo">
       <label for="fechaDesde">Fecha desde</label>
-      <input id="fechaDesde" type="date" />
+      <input id="fechaDesde" type="date" [(ngModel)]="filtros.fechaDesde" />
     </div>
 
     <div class="campo">
       <label for="fechaHasta">Fecha hasta</label>
-      <input id="fechaHasta" type="date" />
+      <input id="fechaHasta" type="date" [(ngModel)]="filtros.fechaHasta" />
     </div>
   </div>
 
