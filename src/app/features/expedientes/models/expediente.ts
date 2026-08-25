@@ -5,7 +5,7 @@ export interface Expediente {
   prioridad: string;
   fechaAlta: Date;
   fechaVencimiento: Date;
-  Solicitante: string;
-  Unidad: string;
+  solicitante: string;
+  unidad: string;
   descripcion: string;
 }

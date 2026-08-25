@@ -13,6 +13,7 @@ export class ListaExpedientes {
   productoSeleccionado = output<Expediente>();
 
   onExpedienteClick(expediente: Expediente) {
+    console.log('Expediente seleccionado:', expediente);
     this.productoSeleccionado.emit(expediente);  
   }
 }

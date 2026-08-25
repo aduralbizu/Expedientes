@@ -1,9 +1,9 @@
-import { Component, computed, inject, input, Signal } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FiltroExpedientes } from "../../components/filtro-expedientes/filtro-expedientes";
 import { ListaExpedientes } from "../../components/lista-expedientes/lista-expedientes";
-import { Expediente } from "../../models/expediente";
-import { EXPEDIENTES_MOCK } from '../../data/expedientes.mock';
+import { ExpedientesService } from '../../services/expedientes-service/expedientes-service';
+import { Expediente } from '../../models/expediente';
 
 @Component({
   selector: 'app-pagina-expedientes',
@@ -11,19 +11,30 @@ import { EXPEDIENTES_MOCK } from '../../data/expedientes.mock';
   templateUrl: './pagina-expedientes.html',
   styleUrl: './pagina-expedientes.css',
 })
-export class PaginaExpedientes {
+export class PaginaExpedientes implements OnInit {
   router = inject(Router);
+  expedientesService = inject(ExpedientesService);
 
   nombre = input<string>();
+  expedientes: Expediente[] = [];
 
-  listaexpedientes : Signal<Expediente[]> = computed(() => {
+  ngOnInit(): void {
+    this.expedientesService.obtenerExpedientes().subscribe(expedientes => {
+      this.expedientes = expedientes;
+    });
+  }
+
+  
+
+  getlistaexpedientes(): Expediente[] {
     if (!this.nombre()) {
-      console.log('no hay filtro');
-      return EXPEDIENTES_MOCK;
+      return this.expedientes;
     }
 
-    return EXPEDIENTES_MOCK.filter(expediente => expediente.numero.toLowerCase().includes(this.nombre()!.toLowerCase()));
-  });
+    return this.expedientes.filter(expediente =>
+      expediente.numero.toLowerCase().includes(this.nombre()!.toLowerCase())
+    );
+  }
 
   filtraExpedientes(filtro: string | null) {
     this.router.navigate(['/expedientes'], {
@@ -31,5 +42,9 @@ export class PaginaExpedientes {
         nombre : filtro || null
       }
     });
-  }   
+  }
+
+  seleccionDeCliente(expediente: Expediente) {
+    this.router.navigate(['/expedientes', expediente.numero]);
+  }
 }

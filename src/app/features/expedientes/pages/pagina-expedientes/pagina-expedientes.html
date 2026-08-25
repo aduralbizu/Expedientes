@@ -7,6 +7,6 @@
   </div>
 
   <div class="seccion seccion-lista">
-    <app-lista-expedientes [expedientes]="listaexpedientes()"></app-lista-expedientes>
+    <app-lista-expedientes [expedientes]="getlistaexpedientes()" (productoSeleccionado)="seleccionDeCliente($event)"></app-lista-expedientes>
   </div>
 </div>
