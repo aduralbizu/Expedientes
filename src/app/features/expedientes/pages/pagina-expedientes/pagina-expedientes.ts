@@ -5,10 +5,11 @@ import { ListaExpedientes } from "../../components/lista-expedientes/lista-exped
 import { ExpedientesService } from '../../services/expedientes-service/expedientes-service';
 import { Expediente } from '../../models/expediente';
 import { FiltrosExpedientes } from '../../models/filtros-expediente';
+import { ExpedientesListadoPaginacion } from "../../components/expedientes-listado-paginacion/expedientes-listado-paginacion";
 
 @Component({
   selector: 'app-pagina-expedientes',
-  imports: [FiltroExpedientes, ListaExpedientes],
+  imports: [FiltroExpedientes, ListaExpedientes, ExpedientesListadoPaginacion],
   templateUrl: './pagina-expedientes.html',
   styleUrl: './pagina-expedientes.css',
 })
@@ -18,6 +19,9 @@ export class PaginaExpedientes implements OnInit {
 
   nombre = input<string>();
   expedientes: Expediente[] = [];
+
+  resultadosPorPagina = 30;
+
   filtros: FiltrosExpedientes = {
     numero: '',
     estado: '',
@@ -26,13 +30,14 @@ export class PaginaExpedientes implements OnInit {
     fechaHasta: ''
   };
 
+  totalItems = 290; //Esto hay que cambiar
+  itemsPrevios = 0;
+
   ngOnInit(): void {
     this.expedientesService.obtenerExpedientes().subscribe(expedientes => {
       this.expedientes = expedientes;
     });
   }
-
-  
 
   getlistaexpedientes(): Expediente[] {
     const numero = this.filtros.numero || this.nombre() || '';
@@ -57,12 +62,20 @@ export class PaginaExpedientes implements OnInit {
 
     this.router.navigate(['/expedientes'], {
       queryParams: {
-        nombre: filtros.numero || null
+        nombre: filtros.numero || null,
+        estado: filtros.estado || null,
+        prioridad: filtros.prioridad || null,
+        fechaDesde: filtros.fechaDesde || null,
+        fechaHasta: filtros.fechaHasta || null,   
       }
     });
   }
 
   seleccionDeCliente(expediente: Expediente) {
     this.router.navigate(['/expedientes', expediente.numero]);
+  }
+
+  cambioPagina(pagina: number) {
+    //
   }
 }

@@ -9,4 +9,10 @@
   <div class="seccion seccion-lista">
     <app-lista-expedientes [expedientes]="getlistaexpedientes()" (productoSeleccionado)="seleccionDeCliente($event)"></app-lista-expedientes>
   </div>
+  <app-expedientes-listado-paginacion
+    [itemsPorPagina]="resultadosPorPagina"
+    [totalItems]="totalItems"
+    [itemsPrevios]="itemsPrevios"
+    (cambioPagina)="cambioPagina($event)">
+  </app-expedientes-listado-paginacion>
 </div>

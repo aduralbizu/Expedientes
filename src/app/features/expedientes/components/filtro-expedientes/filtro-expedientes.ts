@@ -19,6 +19,14 @@ export class FiltroExpedientes {
     fechaHasta: ''
   };
 
+  filtrosAAplicar: FiltrosExpedientes = {
+    numero: '',
+    estado: '',
+    prioridad: '',
+    fechaDesde: '',
+    fechaHasta: ''
+  };
+
   limpiar(){
     this.filtros = {
       numero: '',
@@ -27,10 +35,18 @@ export class FiltroExpedientes {
       fechaDesde: '',
       fechaHasta: ''
     };
-    this.filtrosExpediente.emit(this.filtros);
+    this.filtrosAAplicar = {
+      numero: '',
+      estado: '',
+      prioridad: '',
+      fechaDesde: '',
+      fechaHasta: ''
+    };
+    this.filtrosExpediente.emit(this.filtrosAAplicar);
   }
 
   buscar(){
-    this.filtrosExpediente.emit(this.filtros);
+    this.filtrosAAplicar = { ...this.filtros };
+    this.filtrosExpediente.emit(this.filtrosAAplicar);
   }
 }

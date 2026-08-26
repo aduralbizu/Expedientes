@@ -1,0 +1,24 @@
+<div class="paginador" aria-label="Paginación de expedientes">
+  <button
+    class="paginador__boton"
+    type="button"
+    [disabled]="primeraPagina()"
+    (click)="navegarAPagina(paginaActual() - 1)">
+    Anterior
+  </button>
+
+  <div class="paginador__info" aria-live="polite">
+    <span class="paginador__label">Página</span>
+    <strong>{{ paginaActual() }}</strong>
+    <span class="paginador__separator">de</span>
+    <span>{{ totalPaginas() }}</span>
+  </div>
+
+  <button
+    class="paginador__boton paginador__boton--siguiente"
+    type="button"
+    [disabled]="UltimaPagina()"
+    (click)="navegarAPagina(paginaActual() + 1)">
+    Siguiente
+  </button>
+</div>
