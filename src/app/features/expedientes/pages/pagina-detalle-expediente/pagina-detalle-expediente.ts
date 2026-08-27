@@ -17,8 +17,8 @@ export class PaginaDetalleExpediente {
   expedientes: Expediente[] = [];
 
   ngOnInit(): void {
-    this.expedientesService.obtenerExpedientes().subscribe(expedientes => {
-      this.expedientes = expedientes;
+    this.expedientesService.obtenerExpediente(this.numero() ?? '').subscribe(expediente => {
+      this.expedientes = [expediente];
     });
   }
 

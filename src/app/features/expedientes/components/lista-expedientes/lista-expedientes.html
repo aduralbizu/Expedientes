@@ -5,15 +5,17 @@
         <th>Nº expediente</th>
         <th>Título</th>
         <th>Estado</th>
+        <th>Prioridad</th>
         <th>Fecha alta</th>
-        <th>Fecha alta</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-        @for (expediente of expedientes(); track expediente.numero) {
+        @for (expediente of respuestaExpedientes(); track expediente.numero) {
             <tr>
                 <td>{{expediente.numero}}</td>
                 <td>{{expediente.titulo}}</td>
+                <td>{{expediente.prioridad}}</td>
                 <td>{{expediente.estado}}</td>
                 <td>{{ expediente.fechaAlta | date: 'dd/MM/yyyy' }}</td>
                 <td>

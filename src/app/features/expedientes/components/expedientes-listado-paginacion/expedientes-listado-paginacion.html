@@ -3,8 +3,8 @@
     class="paginador__boton"
     type="button"
     [disabled]="primeraPagina()"
-    (click)="navegarAPagina(paginaActual() - 1)">
-    Anterior
+    (click)="clickCambioPagina(paginaActual() - 1)">
+    ← Anterior
   </button>
 
   <div class="paginador__info" aria-live="polite">
@@ -17,8 +17,8 @@
   <button
     class="paginador__boton paginador__boton--siguiente"
     type="button"
-    [disabled]="UltimaPagina()"
-    (click)="navegarAPagina(paginaActual() + 1)">
-    Siguiente
+    [disabled]="ultimaPagina()"
+    (click)="clickCambioPagina(paginaActual() + 1)">
+    Siguiente →
   </button>
 </div>

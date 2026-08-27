@@ -9,7 +9,7 @@ import { Expediente } from '../../models/expediente';
   styleUrl: './lista-expedientes.css',
 })
 export class ListaExpedientes {
-  expedientes = input<Expediente[]>([]);
+  respuestaExpedientes = input<Expediente[] | null>([]);
   productoSeleccionado = output<Expediente>();
 
   onExpedienteClick(expediente: Expediente) {

@@ -7,12 +7,14 @@
   </div>
 
   <div class="seccion seccion-lista">
-    <app-lista-expedientes [expedientes]="getlistaexpedientes()" (productoSeleccionado)="seleccionDeCliente($event)"></app-lista-expedientes>
+    <app-lista-expedientes [respuestaExpedientes]="getlistaexpedientes()" (productoSeleccionado)="seleccionDeCliente($event)"></app-lista-expedientes>
+    @if (respuestaRecursos(); as respuesta) {
+      <app-expedientes-listado-paginacion
+        [skip]="respuesta.skip"
+        [totalItems]="respuesta.total"
+        [itemsPorPagina]="respuesta.limit"
+        (cambioPagina)="cambioPagina($event)">
+      </app-expedientes-listado-paginacion>
+    }
   </div>
-  <app-expedientes-listado-paginacion
-    [itemsPorPagina]="resultadosPorPagina"
-    [totalItems]="totalItems"
-    [itemsPrevios]="itemsPrevios"
-    (cambioPagina)="cambioPagina($event)">
-  </app-expedientes-listado-paginacion>
 </div>

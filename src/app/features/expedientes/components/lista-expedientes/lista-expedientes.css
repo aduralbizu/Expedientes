@@ -1,7 +1,10 @@
 .lista-expedientes-container {
   width: 100%;
+  max-height: 420px;
+  overflow-y: auto;
   overflow-x: auto;
   font-family: Arial, sans-serif;
+  border-radius: 6px;
 }
 
 .tabla-expedientes {
@@ -15,14 +18,20 @@
 .tabla-expedientes td {
   padding: 0.6rem 0.75rem;
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .tabla-expedientes thead th {
+  position: sticky;
+  top: 0;
   background: #f5f5f5;
   font-weight: 600;
   color: #444;
   white-space: nowrap;
+}
+
+.tabla-expedientes tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .tabla-expedientes tbody tr:hover {

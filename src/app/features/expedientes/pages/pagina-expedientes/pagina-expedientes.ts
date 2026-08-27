@@ -6,6 +6,7 @@ import { ExpedientesService } from '../../services/expedientes-service/expedient
 import { Expediente } from '../../models/expediente';
 import { FiltrosExpedientes } from '../../models/filtros-expediente';
 import { ExpedientesListadoPaginacion } from "../../components/expedientes-listado-paginacion/expedientes-listado-paginacion";
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pagina-expedientes',
@@ -13,14 +14,14 @@ import { ExpedientesListadoPaginacion } from "../../components/expedientes-lista
   templateUrl: './pagina-expedientes.html',
   styleUrl: './pagina-expedientes.css',
 })
-export class PaginaExpedientes implements OnInit {
+export class PaginaExpedientes {
   router = inject(Router);
   expedientesService = inject(ExpedientesService);
 
   nombre = input<string>();
-  expedientes: Expediente[] = [];
 
-  resultadosPorPagina = 30;
+  itemsPorPagina = 8;
+  pagina = input<number>();
 
   filtros: FiltrosExpedientes = {
     numero: '',
@@ -30,16 +31,33 @@ export class PaginaExpedientes implements OnInit {
     fechaHasta: ''
   };
 
-  totalItems = 290; //Esto hay que cambiar
   itemsPrevios = 0;
 
-  ngOnInit(): void {
-    this.expedientesService.obtenerExpedientes().subscribe(expedientes => {
-      this.expedientes = expedientes;
+  recursoCambioFiltro = rxResource({
+    params: () => ({
+      pagina: this.pagina() ?? 1
+    }),
+    stream: ({ params }) => {
+      const skip = (params.pagina - 1) * this.itemsPorPagina;
+      return this.expedientesService.obtenerExpedientes(this.itemsPorPagina, skip);
+    }
+  });
+
+  respuestaRecursos = this.recursoCambioFiltro.value;
+
+  cambioPagina(pagina: number) {
+    this.router.navigate(['/expedientes'], {
+      queryParams: { pagina: pagina },
+      queryParamsHandling: 'merge'
     });
   }
 
+  seleccionDeCliente(expediente: Expediente) {
+    this.router.navigate(['/expedientes', expediente.numero]);
+  }
+
   getlistaexpedientes(): Expediente[] {
+    const expedientes = this.respuestaRecursos()?.expedientes ?? [];
     const numero = this.filtros.numero || this.nombre() || '';
     const fechaDesde = this.filtros.fechaDesde
       ? new Date(`${this.filtros.fechaDesde}T00:00:00`)
@@ -48,7 +66,7 @@ export class PaginaExpedientes implements OnInit {
       ? new Date(`${this.filtros.fechaHasta}T23:59:59`)
       : null;
 
-    return this.expedientes.filter(expediente =>
+    return expedientes.filter(expediente =>
       expediente.numero.toLowerCase().includes(numero.toLowerCase()) &&
       (!this.filtros.estado || expediente.estado === this.filtros.estado) &&
       (!this.filtros.prioridad || expediente.prioridad === this.filtros.prioridad) &&
@@ -69,13 +87,5 @@ export class PaginaExpedientes implements OnInit {
         fechaHasta: filtros.fechaHasta || null,   
       }
     });
-  }
-
-  seleccionDeCliente(expediente: Expediente) {
-    this.router.navigate(['/expedientes', expediente.numero]);
-  }
-
-  cambioPagina(pagina: number) {
-    //
   }
 }
