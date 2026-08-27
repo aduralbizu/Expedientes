@@ -38,6 +38,33 @@
   background: #fafafa;
 }
 
+.th-ordenable {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  cursor: pointer;
+}
+
+.th-ordenable:hover {
+  color: #1976d2;
+}
+
+.icono-orden {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.icono-orden--activo {
+  color: #1976d2;
+}
+
 .btn-editar {
   padding: 0.35rem 0.9rem;
   border: none;

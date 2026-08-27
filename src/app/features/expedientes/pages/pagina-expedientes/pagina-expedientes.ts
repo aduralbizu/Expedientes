@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FiltroExpedientes } from "../../components/filtro-expedientes/filtro-expedientes";
 import { ListaExpedientes } from "../../components/lista-expedientes/lista-expedientes";
@@ -33,6 +33,12 @@ export class PaginaExpedientes {
 
   itemsPrevios = 0;
 
+  ordenFechaAlta: 'asc'| 'desc' | null = null;
+
+  ordenarPorFechaAlta(direccion: 'asc' | 'desc' | null) {
+    this.ordenFechaAlta = direccion;
+  }
+
   recursoCambioFiltro = rxResource({
     params: () => ({
       pagina: this.pagina() ?? 1
@@ -66,13 +72,23 @@ export class PaginaExpedientes {
       ? new Date(`${this.filtros.fechaHasta}T23:59:59`)
       : null;
 
-    return expedientes.filter(expediente =>
+    const resultado = expedientes.filter(expediente =>
       expediente.numero.toLowerCase().includes(numero.toLowerCase()) &&
       (!this.filtros.estado || expediente.estado === this.filtros.estado) &&
       (!this.filtros.prioridad || expediente.prioridad === this.filtros.prioridad) &&
       (!fechaDesde || expediente.fechaAlta >= fechaDesde) &&
       (!fechaHasta || expediente.fechaAlta <= fechaHasta)
     );
+
+    //ordenado (if needed)
+    if (this.ordenFechaAlta){
+      resultado.sort((a, b) => {
+        const diff = a.fechaAlta.getTime() - b.fechaAlta.getTime();
+        return this.ordenFechaAlta === 'asc' ? diff : -diff;
+      });
+    }
+
+    return resultado;
   }
 
   filtraExpedientes(filtros: FiltrosExpedientes) {

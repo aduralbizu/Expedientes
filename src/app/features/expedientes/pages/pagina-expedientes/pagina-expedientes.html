@@ -7,7 +7,9 @@
   </div>
 
   <div class="seccion seccion-lista">
-    <app-lista-expedientes [respuestaExpedientes]="getlistaexpedientes()" (productoSeleccionado)="seleccionDeCliente($event)"></app-lista-expedientes>
+    <app-lista-expedientes [respuestaExpedientes]="getlistaexpedientes()" 
+    (productoSeleccionado)="seleccionDeCliente($event)"
+    (ordenarPorFechaAlta)="ordenarPorFechaAlta($event)"></app-lista-expedientes>
     @if (respuestaRecursos(); as respuesta) {
       <app-expedientes-listado-paginacion
         [skip]="respuesta.skip"

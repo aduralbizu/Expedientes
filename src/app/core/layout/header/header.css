@@ -8,13 +8,47 @@
   font-family: Arial, sans-serif;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 .logo h2 {
+  position: relative;
+  display: inline-block;
   margin: 0;
   font-size: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.logo h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+
+.logo:hover h2 {
+  color: #e0d4ff;
+}
+
+.logo:hover h2::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.logo:active h2 {
+  color: #c9b8ff;
 }
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 1rem;                      /* Espacio entre los elementos de navegación si añades más */
 }
 
@@ -23,5 +57,35 @@
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
+}
+
+.btn-nav {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-nuevo {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  color: white;
+}
+
+.btn-nuevo:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-logout {
+  border: none;
+  background: #ffffff;
+  color: #4d05d3;
+}
+
+.btn-logout:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 

@@ -1,13 +1,14 @@
 <header class="app-header">
-  <div class="logo">
+  <div class="logo" (click)="onLogoClick()">
     <h2>Expedientes - MVP</h2>
   </div>
-  
-  @if (seHaIniciadoSesion){
     <nav class="nav-links">
         <!-- <img src="assets/user-icon.png" alt="Icono de usuario" class="user-icon" /> -->
-        <a>Usuario</a>
+        <button type="button" class="btn-nav btn-nuevo" (click)="onNuevoExpediente()">
+          Nuevo expediente
+        </button>
+        <button type="button" class="btn-nav btn-logout" (click)="onLogout()">
+          Cerrar sesión
+        </button>
     </nav>
-  }
-  
 </header>

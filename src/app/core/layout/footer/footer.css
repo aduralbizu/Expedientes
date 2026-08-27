@@ -1,6 +1,6 @@
 .app-footer {
   text-align: center;         /* Centra el texto */
-  padding: 1rem;              /* Espaciado interno */
+  padding: 1rem 2rem;         /* Espaciado interno, igual que el header */
   background-color: #4d05d3;    /* Color de fondo suave */
   color: white;             /* Color de texto gris */
   font-size: 0.875rem;        /* Tamaño de fuente pequeño */
@@ -9,4 +9,5 @@
   position: fixed;            /* Opcional: fija el footer abajo */
   bottom: 0;
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }

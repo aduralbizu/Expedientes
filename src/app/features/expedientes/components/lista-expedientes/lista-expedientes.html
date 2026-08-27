@@ -6,7 +6,12 @@
         <th>Título</th>
         <th>Estado</th>
         <th>Prioridad</th>
-        <th>Fecha alta</th>
+        <th>
+          <button type="button" class="th-ordenable" (click)="onOrdenarFechaAlta()">
+            Fecha alta
+            <span class="icono-orden" [class.icono-orden--activo]="ordenFechaAlta()">{{ ordenFechaAlta() === 'asc' ? '↑' : ordenFechaAlta() === 'desc' ? '↓' : '↕' }}</span>
+          </button>
+        </th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -15,8 +20,8 @@
             <tr>
                 <td>{{expediente.numero}}</td>
                 <td>{{expediente.titulo}}</td>
-                <td>{{expediente.prioridad}}</td>
                 <td>{{expediente.estado}}</td>
+                <td>{{expediente.prioridad}}</td>
                 <td>{{ expediente.fechaAlta | date: 'dd/MM/yyyy' }}</td>
                 <td>
                   <button type="button" class="btn-editar" (click)="onExpedienteClick(expediente)">
