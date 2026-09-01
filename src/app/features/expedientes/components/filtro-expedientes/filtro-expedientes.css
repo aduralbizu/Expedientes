@@ -50,21 +50,43 @@
 }
 
 .btn {
+  min-height: 40px;
   padding: 0.5rem 1.1rem;
-  border-radius: 4px;
+  border-radius: var(--mat-sys-corner-small);
   border: 1px solid transparent;
   font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
   font-family: inherit;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-primario {
-  background: #1976d2;
-  color: #fff;
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
 }
 
 .btn-secundario {
-  background: #fff;
-  color: #333;
-  border-color: #ccc;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-primary);
+  border-color: var(--mat-sys-outline);
+}
+
+.btn-primario:hover {
+  box-shadow: var(--mat-sys-level2);
+}
+
+.btn-secundario:hover {
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--mat-sys-tertiary);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
 }

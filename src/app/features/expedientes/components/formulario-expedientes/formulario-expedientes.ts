@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { form, FormField, required, minLength } from '@angular/forms/signals';
+import { form, FormField, required, minLength, pattern, submit } from '@angular/forms/signals';
 import { Router } from '@angular/router';
 
 interface FormularioExpediente {
@@ -23,6 +23,7 @@ interface FormularioExpediente {
 })
 export class FormularioExpedientes {
   router = inject(Router);
+  intentoEnvio = signal(false);
 
   expedienteModel = signal({
     numero: '',
@@ -38,18 +39,28 @@ export class FormularioExpedientes {
 
   expedienteForm = form(this.expedienteModel, (schemaPath)=>{
     required(schemaPath.numero, {message: 'El número de expediente es obligatorio'});
+    pattern(schemaPath.numero, /^EXP-\d{4}-\d{6}$/, {
+      message: 'Usa mayúsculas, números y guiones (ej. EXP-2026-000001)',
+    });
 
     required(schemaPath.titulo, {message: 'El título es obligatorio'});
     minLength(schemaPath.titulo, 5, {message: 'El título debe tener al menos 5 caracteres'});
+  
+    
+  
   });
 
   cancelar() {
     this.router.navigate(['/expedientes']);
   }
 
-  crear() {
-    // mockeo de creación: sin backend real, solo navega al listado
-    console.log('Expediente a crear:', this.expedienteModel());
-    this.router.navigate(['/expedientes']);
+  async crear() {
+    this.intentoEnvio.set(true);
+    await submit(this.expedienteForm, async () => {
+      // mockeo de creación: sin backend real, solo navega al listado
+      console.log('Expediente a crear:', this.expedienteModel());
+      await this.router.navigate(['/expedientes']);
+      return undefined;
+    });
   }
 }

@@ -1,14 +1,21 @@
 
-<form class="formulario-expedientes-container">
+<form class="formulario-expedientes-container" (ngSubmit)="crear()">
   <h1 class="formulario-titulo">Nuevo expediente</h1>
   <div class="formulario-grid">
     <div class="columna">
       <div class="campo">
         <label for="numero">Nº expediente</label>
-        <input id="numero" 
+        <input 
+            id="numero" 
             type="text" 
             placeholder="EXP-YYYY-123456"
-            [formField]="expedienteForm.numero" />
+            [formField]="expedienteForm.numero" 
+          />
+          @if ((expedienteForm.numero().touched() || intentoEnvio()) && expedienteForm.numero().invalid()) { 
+            @for (error of expedienteForm.numero().errors(); track error.kind) {
+                <span class="error" role="alert">{{ error.message }}</span>
+              }
+            }
       </div>
 
       <div class="campo">
@@ -41,6 +48,11 @@
       <div class="campo">
         <label >Título</label>
         <input id="titulo" type="text" [formField]="expedienteForm.titulo" />
+          @if ((expedienteForm.titulo().touched() || intentoEnvio()) && expedienteForm.titulo().invalid()) { 
+            @for (error of expedienteForm.titulo().errors(); track error.kind) {
+                <span class="error" role="alert">{{ error.message }}</span>
+              }
+            }
       </div>
 
       <div class="campo">
@@ -74,6 +86,6 @@
 
   <div class="acciones-row">
     <button type="button" class="btn btn-secundario" (click)="cancelar()">Cancelar</button>
-    <button type="button" class="btn btn-primario" (click)="crear()">Crear</button>
+    <button type="submit" class="btn btn-primario">Crear</button>
   </div>
 </form>

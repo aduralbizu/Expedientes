@@ -17,15 +17,15 @@
     </thead>
     <tbody>
         @for (expediente of respuestaExpedientes(); track expediente.numero) {
-            <tr>
+            <tr (click)="onExpedienteClick(expediente)">
                 <td>{{expediente.numero}}</td>
                 <td>{{expediente.titulo}}</td>
                 <td>{{expediente.estado}}</td>
                 <td>{{expediente.prioridad}}</td>
                 <td>{{ expediente.fechaAlta | date: 'dd/MM/yyyy' }}</td>
                 <td>
-                  <button type="button" class="btn-editar" (click)="onExpedienteClick(expediente)">
-                    Ver detalle
+                  <button type="button" class="btn-editar" (click)="$event.stopPropagation(); onEditar(expediente)">
+                    Editar
                   </button>
                 </td>
             </tr>

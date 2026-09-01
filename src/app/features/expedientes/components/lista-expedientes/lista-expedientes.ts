@@ -20,6 +20,7 @@ const SIGUIENTE_ORDEN: Record<string, DireccionOrden> = {
 export class ListaExpedientes {
   respuestaExpedientes = input<Expediente[] | null>([]);
   productoSeleccionado = output<Expediente>();
+  editarExpediente = output<Expediente>();
 
   ordenarPorFechaAlta = output<DireccionOrden>();
   ordenFechaAlta = signal<DireccionOrden>(null);
@@ -33,6 +34,11 @@ export class ListaExpedientes {
   onExpedienteClick(expediente: Expediente) {
     console.log('Expediente seleccionado:', expediente);
     this.productoSeleccionado.emit(expediente);  
+  }
+
+  onEditar(expediente: Expediente) {
+    console.log('Editar expediente:', expediente);
+    this.editarExpediente.emit(expediente);
   }
 }
 

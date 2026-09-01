@@ -14,27 +14,34 @@
 }
 
 .paginador__boton {
-  border: 1px solid #d0d7de;
-  background: #ffffff;
-  color: #1f2937;
+  min-height: 40px;
+  border: 1px solid var(--mat-sys-outline);
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-primary);
   font-size: 0.95rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: var(--mat-sys-corner-small);
   padding: 0.65rem 1.1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .paginador__boton:hover:not(:disabled) {
-  background: #eef4ff;
-  border-color: #93c5fd;
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  border-color: var(--mat-sys-primary);
 }
 
 .paginador__boton:disabled {
-  background: #eef2f7;
-  color: #9ca3af;
+  background-color: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface-variant);
   cursor: not-allowed;
-  opacity: 0.8;
+  opacity: 0.38;
+}
+
+.paginador__boton:focus-visible {
+  outline: 3px solid var(--mat-sys-tertiary);
+  outline-offset: 2px;
 }
 
 .paginador__info {

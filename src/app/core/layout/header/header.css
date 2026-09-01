@@ -3,8 +3,10 @@
   justify-content: space-between; /* Separa el logo a la izquierda y el nav a la derecha */
   align-items: center;            /* Los centra verticalmente */
   padding: 1rem 2rem;
-  background-color: #4d05d3;      /* Color de fondo opcional */
-  color: white;
+
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+  box-shadow: var(--mat-sys-level2);
   font-family: Arial, sans-serif;
 }
 
@@ -63,29 +65,46 @@
   font-family: inherit;
   font-size: 0.9rem;
   font-weight: 600;
+  min-height: 40px;
   padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: var(--mat-sys-corner-small);
   cursor: pointer;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-nuevo {
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  background: transparent;
-  color: white;
+  border: none;
+  background-color: var(--mat-sys-on-primary);
+  color: var(--mat-sys-primary);
 }
 
 .btn-nuevo:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  box-shadow: var(--mat-sys-level1);
 }
 
 .btn-logout {
-  border: none;
-  background: #ffffff;
-  color: #4d05d3;
+  border: 1px solid var(--mat-sys-on-primary);
+  background-color: transparent;
+  color: var(--mat-sys-on-primary);
 }
 
 .btn-logout:hover {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  background-color: color-mix(
+    in srgb,
+    var(--mat-sys-on-primary) 12%,
+    transparent
+  );
+}
+
+.btn-nav:focus-visible {
+  outline: 3px solid var(--mat-sys-tertiary);
+  outline-offset: 2px;
+}
+
+.btn-nav:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
 }
 

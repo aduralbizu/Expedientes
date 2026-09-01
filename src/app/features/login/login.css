@@ -36,12 +36,17 @@
 
 .form-group a {
     font-size: 0.875rem;
-    color: #3b82f6;
+    color: var(--mat-sys-primary);
     text-decoration: none;
 }
 
 .form-group a:hover {
     text-decoration: underline;
+}
+
+.form-group a:focus-visible {
+    outline: 3px solid var(--mat-sys-tertiary);
+    outline-offset: 2px;
 }
 
 .form-group input {
@@ -53,17 +58,29 @@
 
 .login-container button {
     width: 100%;
+    min-height: 44px;
     padding: 0.75rem;
-    background-color: #3b82f6;
-    color: white;
+    background-color: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
     border: none;
-    border-radius: 4px;
+    border-radius: var(--mat-sys-corner-small);
     font-size: 1rem;
     cursor: pointer;
     font-weight: bold;
     margin-top: 1rem;
+    transition: box-shadow 0.2s ease;
 }
 
 .login-container button:hover {
-    background-color: #2563eb;
+    box-shadow: var(--mat-sys-level2);
+}
+
+.login-container button:focus-visible {
+    outline: 3px solid var(--mat-sys-tertiary);
+    outline-offset: 2px;
+}
+
+.login-container button:disabled {
+    cursor: not-allowed;
+    opacity: 0.38;
 }

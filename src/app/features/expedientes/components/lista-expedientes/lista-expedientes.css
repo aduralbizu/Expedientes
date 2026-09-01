@@ -50,10 +50,11 @@
   font-weight: 600;
   color: inherit;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .th-ordenable:hover {
-  color: #1976d2;
+  color: var(--mat-sys-primary);
 }
 
 .icono-orden {
@@ -62,15 +63,16 @@
 }
 
 .icono-orden--activo {
-  color: #1976d2;
+  color: var(--mat-sys-primary);
 }
 
 .btn-editar {
+  min-height: 36px;
   padding: 0.35rem 0.9rem;
   border: none;
-  border-radius: 3px;
-  background: #1976d2;
-  color: #fff;
+  border-radius: var(--mat-sys-corner-small);
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
   font-family: inherit;
   font-size: 0.85rem;
   cursor: pointer;
@@ -78,8 +80,7 @@
 }
 
 .btn-editar:hover {
-  background: #1565c0;
-  box-shadow: 0 2px 6px rgba(25, 118, 210, 0.35);
+  box-shadow: var(--mat-sys-level2);
 }
 
 .btn-editar:active {
@@ -87,6 +88,11 @@
 }
 
 .btn-editar:focus-visible {
-  outline: 2px solid #90caf9;
+  outline: 3px solid var(--mat-sys-tertiary);
+  outline-offset: 2px;
+}
+
+.th-ordenable:focus-visible {
+  outline: 3px solid var(--mat-sys-tertiary);
   outline-offset: 2px;
 }
