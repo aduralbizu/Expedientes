@@ -5,6 +5,7 @@ import { PaginaDetalleExpediente } from './features/expedientes/pages/pagina-det
 import { FormularioExpedientes } from './features/expedientes/components/formulario-expedientes/formulario-expedientes';
 import { LoginPage } from './features/auth/pages/login-page/login-page';
 import { authGuard } from './core/guards/auth-guard';
+import { rolGuard } from './core/guards/rol-guard';
 
 export const routes: Routes = [
     { 
@@ -20,7 +21,7 @@ export const routes: Routes = [
     { 
         path: 'expedientes/nuevo', 
         component: FormularioExpedientes,
-        canActivate: [authGuard]
+        canActivate: [rolGuard, authGuard] //Editar también!!!
     },
     { 
         path: 'login', 

@@ -5,9 +5,11 @@
   @if (autenticado()){
     <nav class="nav-links">
         <!-- <img src="assets/user-icon.png" alt="Icono de usuario" class="user-icon" /> -->
-        <button type="button" class="btn-nav btn-nuevo" (click)="onNuevoExpediente()">
-          Nuevo expediente
-        </button>
+        @if (esEditor()) {
+          <button type="button" class="btn-nav btn-nuevo" (click)="onNuevoExpediente()">
+            Nuevo expediente
+          </button>
+        }
         <button type="button" class="btn-nav btn-logout" (click)="logout.emit()">
           Cerrar sesión
         </button>

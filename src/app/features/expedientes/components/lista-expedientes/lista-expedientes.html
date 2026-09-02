@@ -12,7 +12,9 @@
             <span class="icono-orden" [class.icono-orden--activo]="ordenFechaAlta()">{{ ordenFechaAlta() === 'asc' ? '↑' : ordenFechaAlta() === 'desc' ? '↓' : '↕' }}</span>
           </button>
         </th>
-        <th>Acciones</th>
+        @if (esEditor()) {
+          <th>Acciones</th>
+        }
       </tr>
     </thead>
     <tbody>
@@ -23,11 +25,13 @@
                 <td>{{expediente.estado}}</td>
                 <td>{{expediente.prioridad}}</td>
                 <td>{{ expediente.fechaAlta | date: 'dd/MM/yyyy' }}</td>
-                <td>
-                  <button type="button" class="btn-editar" (click)="$event.stopPropagation(); onEditar(expediente)">
-                    Editar
-                  </button>
-                </td>
+                @if (esEditor()) {
+                  <td>
+                    <button type="button" class="btn-editar" (click)="$event.stopPropagation(); onEditar(expediente)">
+                      Editar
+                    </button>
+                  </td>
+                }
             </tr>
         }
     </tbody>

@@ -1,6 +1,7 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Expediente } from '../../models/expediente';
+import { AuthService } from '../../../../core/services/auth-service';
 
 type DireccionOrden = 'asc' | 'desc' | null;
 
@@ -18,6 +19,9 @@ const SIGUIENTE_ORDEN: Record<string, DireccionOrden> = {
   styleUrl: './lista-expedientes.css',
 })
 export class ListaExpedientes {
+  private readonly authService = inject(AuthService);
+
+  esEditor = this.authService.esUsuarioEditor;
   respuestaExpedientes = input<Expediente[] | null>([]);
   productoSeleccionado = output<Expediente>();
   editarExpediente = output<Expediente>();
