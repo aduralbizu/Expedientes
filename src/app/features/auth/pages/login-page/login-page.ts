@@ -1,0 +1,54 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, inject, signal } from '@angular/core';
+import { disabled, form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { Router, ActivatedRoute } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from '../../../../core/services/auth-service';
+
+@Component({
+  selector: 'app-login-page',
+  imports: [FormField, FormRoot],
+  templateUrl: './login-page.html',
+  styleUrl: './login-page.css',
+})
+export class LoginPage {
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+
+  private readonly authService = inject(AuthService);
+
+  readonly loginModel = signal({
+    user: '',
+    pass: '',
+  });
+
+  loginForm = form(this.loginModel, (schemaPath) => 
+    {
+      required(schemaPath.user, { message: 'El usuario es obligatorio' });
+      required(schemaPath.pass, { message: 'La contraseña es obligatoria' });
+    },
+    {
+      submission: {
+        action: async (model) => {
+          try 
+          {
+            console.log("hola")
+            await firstValueFrom(this.authService.login(model().value()))
+            const urlPrevia =this.route.snapshot.queryParamMap.get('urlActual') ?? '/expedientes';
+            this.router.navigate([urlPrevia]);
+            return;
+          } 
+          catch (error) 
+          {
+            return {
+              kind: 'credentials',
+              message: 'Contraseña o usuario incorrectos',
+              fieldTree: model.pass
+            }
+          }
+        }
+      }
+    }
+  );
+
+}

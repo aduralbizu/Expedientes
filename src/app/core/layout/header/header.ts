@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-header',
@@ -12,17 +13,17 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 export class Header {
   router = inject(Router);
 
-  seHaIniciadoSesion = true;
+  authService = inject(AuthService);
+
+  autenticado = this.authService.estaAutenticado;
+  esEditor = this.authService.esUsuarioEditor;
+  nombreUsuarioAutenticado = this.authService.nombreUsuarioAutenticado;
+  
+  logout = output();
 
   onNuevoExpediente() {
     this.router.navigate(['/expedientes/nuevo']);
   }
-
-  onLogout() {
-    this.seHaIniciadoSesion = false;
-    this.router.navigate(['/login']);
-  }
-
   onLogoClick() {
     this.router.navigate(['/expedientes']);
   }

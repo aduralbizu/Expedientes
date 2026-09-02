@@ -1,0 +1,115 @@
+.login-page {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
+  background-color: var(--mat-sys-surface);
+  font-family: Arial, sans-serif;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: var(--mat-sys-surface-container-lowest);
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 8px;
+  box-shadow: var(--mat-sys-level1);
+}
+
+.login-card h2 {
+  margin: 0;
+  color: var(--mat-sys-on-surface);
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.subtitle {
+  margin: 0.5rem 0 2rem;
+  color: var(--mat-sys-on-surface-variant);
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  color: var(--mat-sys-on-surface);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.form-group input {
+  min-height: 44px;
+  padding: 0.65rem 0.75rem;
+  box-sizing: border-box;
+  border: 1px solid var(--mat-sys-outline);
+  border-radius: 4px;
+  outline: none;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.form-group input:focus {
+  border-color: var(--mat-sys-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mat-sys-primary) 16%, transparent);
+}
+
+.error {
+  color: var(--mat-sys-error);
+  font-size: 0.8rem;
+}
+
+button {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: none;
+  border-radius: var(--mat-sys-corner-small);
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  box-shadow: var(--mat-sys-level2);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--mat-sys-tertiary);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .login-card {
+    padding: 1.5rem;
+  }
+}
